@@ -1,0 +1,59 @@
+geolocation:
+  api:
+    host:
+      url: http://10.194.162.142:8080
+    get:
+      gis:
+        uri: /geoLocation/getDataByApplicationNumber
+    post:
+      uri: /geoLocation/saveGeoCoordinates
+
+basic:
+  auth:
+    credentials: admin:$2a$04$AjFEmZeX7mN8zSn57PUEZeJgBeoKMvwteZMBiP57Jb4AGFsUORmLC
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+  datasource:
+    url: "jdbc:postgresql://10.194.162.125:5432/SDMC"
+    username: postgres
+    password: postgres
+  cache:
+    type: redis
+    redis:
+      cache-null-values: true
+      time-to-live: 40000
+  redis:
+    host: 10.194.73.18
+    port: 6379
+  data:
+    mongodb:
+      uri: "mongodb://10.194.58.26:27017/ptrmaster"
+      database: ptrmaster
+application:
+  current:
+    version: v1
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 90
+  client:
+    serviceUrl:
+      defaultZone: https://mcdonline.nic.in/serviceregistry/eureka/
+    registryFetchIntervalSeconds: 10
+
+security:
+  user:
+    name: admin
+    password: $2a$04$AjFEmZeX7mN8zSn57PUEZeJgBeoKMvwteZMBiP57Jb4AGFsUORmLC
+
+log:
+  in:
+    db: true

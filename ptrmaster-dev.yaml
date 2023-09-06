@@ -1,0 +1,49 @@
+server:
+  port: 8085
+
+geolocation:
+    api:
+      host:
+        url: https://mcsuite.nic.in/
+      get:
+        gis:
+          uri: geotagging/geoLocation/getDataByApplicationNumber
+      post:
+          uri: geotagging/geoLocation/saveGeoCoordinates
+
+basic:
+  auth:
+    credentials: admin:password
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+  datasource:
+    url: "jdbc:postgresql://10.197.214.16:5432/MCSUITE"
+    username: postgres
+    password: postgres
+  cache:
+    type: redis
+    redis:
+      cache-null-values: true
+      time-to-live: 40000
+application:
+  current:
+    version: v1
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8082/eureka/
+
+
+security:
+  user:
+    name: admin
+    password: $2a$04$AjFEmZeX7mN8zSn57PUEZeJgBeoKMvwteZMBiP57Jb4AGFsUORmLC
+
+
